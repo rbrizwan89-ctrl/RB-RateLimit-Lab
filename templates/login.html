@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rate Limit Lab - Login</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+
+<div class="bg-gray-800 p-8 rounded-xl shadow-xl w-96">
+        
+    <h2 class="text-xl font-bold text-white text-center mb-5">
+        Rate Limit {{ 'Bypass' if vulnerable else 'Secure' }} Login
+    </h2>
+
+    {% if error %}
+        <p class="text-red-400 text-center mb-3">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <input class="w-full p-2 mb-3 bg-gray-700 text-white rounded" type="text" name="username" placeholder="student">
+        <input class="w-full p-2 mb-5 bg-gray-700 text-white rounded" type="password" name="password" placeholder="password123">
+        <button class="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+    </form>
+
+    {% if not vulnerable %}
+        <p class="text-gray-400 text-center mt-3 text-sm">Max 3 attempts, then temporary block.</p>
+    {% endif %}
+
+    <hr class="my-3 border-gray-600">
+
+    <a href="/login-vulnerable" class="text-blue-400 text-sm block text-center">Try Vulnerable Version →</a>
+
+</div>
+</body>
+</html>
